@@ -32,6 +32,7 @@ router.beforeEach((to,from,next)=>{
   if(to.path === '/login') return next()
   const token = sessionStorage.getItem('token')
   if(!token) return next('/login')
+  else return next()
 })
 
 export default router
