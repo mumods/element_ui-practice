@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    
+    ssssddddd
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    
   }
 }
 </script>
