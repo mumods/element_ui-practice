@@ -1,20 +1,28 @@
 <template>
   <el-container class="home">
     <el-header>
-      <div class="name"></div>
-      <el-button type='info' @click='exit'>退出</el-button>
+      <div class="name">
+        <img src="../../assets/logo.png" alt="">
+        <span>电商后台管理系统</span>
+      </div>
+      <el-button type='info' @click='exit' size="small">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside width="200px">Aside</el-aside>
+      <el-aside width="200px">
+        <SideBar/>
+      </el-aside>
       <el-main>Main</el-main>
     </el-container>
   </el-container>
 </template>
 
 <script>
+import SideBar from 'components/sideBar/SideBar'
 export default {
   name: "Home",
-  components: {},
+  components: {
+    SideBar
+  },
   data(){
     return{
 
@@ -36,6 +44,18 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      .name{
+          color: #fff;
+          font-size: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        img{
+          width: 50px;
+          height: 50px;
+          margin-right: 10px;
+        }
+      }
     }
     .el-aside{
       background-color: #333744;

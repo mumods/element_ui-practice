@@ -1,12 +1,9 @@
 import {request} from './request'
 
-export function login(username,password) {
+export function login(loginForm) {
  return request({
      url: 'login',
-     data: {
-        username,
-        password
-        },
+     data: loginForm,
      method: 'post'
  })
 }
