@@ -9,7 +9,7 @@ export function request(config) {
 
         //拦截器
         instance.interceptors.request.use(config =>{
-            // console.log(config)
+            config.headers.Authorization = window.sessionStorage.getItem('token')
             //操作
             //1.比如一些情求信息不符合要求，需要修改
             //2.每次发送请求时，希望在界面显示一个请求图标，比如加载中

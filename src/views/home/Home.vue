@@ -8,10 +8,12 @@
       <el-button type='info' @click='exit' size="small">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside width="200px">
-        <SideBar/>
+      <el-aside :width="istoggle? '64px':'200px'">
+        <SideBar @toggleChange='toggle'/>
       </el-aside>
-      <el-main>Main</el-main>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
@@ -25,13 +27,16 @@ export default {
   },
   data(){
     return{
-
+      istoggle:''
     }
   },
   methods:{
     exit(){
       sessionStorage.removeItem('token')
       this.$router.push('/login')
+    },
+    toggle(e){
+      this.istoggle = e
     }
   }
 };
