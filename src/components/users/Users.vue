@@ -27,14 +27,14 @@
         <el-table-column prop="mobile" label="电话"></el-table-column>
         <el-table-column prop="role_name" label="角色"></el-table-column>
         <el-table-column prop="mg_state" label="状态">
-          <template slot-scope="scope">
+          <div slot-scope="scope">
             <!--scope表示表格prop的数据，scope.row为当前行的prop值-->
             <el-switch
               v-model="scope.row.mg_state"
               active-color="#13ce66"
               inactive-color="#ff4949">
             </el-switch>
-          </template>
+          </div>
           </el-table-column>
         <el-table-column  label="操作"></el-table-column>
       </el-table>
