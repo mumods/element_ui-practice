@@ -31,19 +31,38 @@
             <!--scope表示表格prop的数据，scope.row为当前行的prop值-->
             <el-switch
               v-model="scope.row.mg_state"
+              @change="stateChange(scope.row)"
               active-color="#13ce66"
               inactive-color="#ff4949">
             </el-switch>
           </div>
           </el-table-column>
-        <el-table-column  label="操作"></el-table-column>
+        <el-table-column  label="操作">
+          <template slot-scope="scope">
+            <el-button size="mini" type="primary" icon="el-icon-edit"></el-button>
+            <el-button size="mini" type="danger" icon="el-icon-delete"></el-button>
+            <el-tooltip effect="dark" content="分配角色" placement="top">
+              <el-button size="mini" type="warning" icon="el-icon-setting"></el-button>
+            </el-tooltip>
+          </template>
+        </el-table-column>
       </el-table>
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="userinfo.pagenum"
+        :page-sizes="[1, 2, 3, 8]"
+        :page-size="userinfo.pagesize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
     </el-card>
   </div>
 </template>
 
 <script>
 import { getUsers } from "network/users.js";
+import { updataState } from "network/users.js";
 export default {
   name: "HelloWorld",
   props: {},
@@ -52,22 +71,45 @@ export default {
       inputInfo: "",
       userinfo: {
         query: "",
-        pagenum: "1",
-        pagesize: "10",
+        pagenum: 1,
+        pagesize: 1,
       },
       userList: [],
-      total: "",
+      total: 0,
       state:''
     };
   },
   methods: {
+
+    //获取数据
     getUserInfo() {
       getUsers(this.userinfo).then((res) => {
         this.userList = res.data.users;
-        this.total = res.data.total;
-        console.log(res);
+        this.total = Number(res.data.total);
+        // console.log(res);
       });
     },
+
+    
+
+    //页面点击切换显示数据条数
+    handleSizeChange(e){
+      this.userinfo.pagesize = e
+      this.getUserInfo()
+    },
+    handleCurrentChange(e){
+      this.userinfo.pagenum = e
+      this.getUserInfo()
+    },
+
+    //
+    stateChange(e){
+      //状态修改
+      let id = Number(e.id)
+      updataState(id,e.mg_state).then(res=>{
+        console.log(res)
+      })
+    }
   },
   created() {
     this.getUserInfo();
@@ -82,5 +124,12 @@ export default {
 .el-table{
   margin-top: 20px;
   text-align: center;
+  .el-table-column{
+    display: flex;
+    justify-content: space-between;
+  }
+}
+.el-pagination{
+  margin-top: 20px;
 }
 </style>

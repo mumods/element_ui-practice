@@ -5,4 +5,11 @@ export function getUsers(userinfo) {
      url: 'users',
      params:userinfo
  })
+
+}
+export function updataState(a,b) {
+    return request({
+        url: `users/${a}/state/${b}`,
+        method:'put'
+    })
 }
