@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import {getMenu} from '../../network/sideBar.js'
+import {getMenu} from 'network/sideBar.js'
 export default {
   name: 'Sidebar',
   props: {

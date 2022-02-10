@@ -19,9 +19,16 @@ const routes = [
     redirect:'/welcome',
     component: () => import('../views/home/Home.vue'),
     children:[
-      {path:'/welcome',component: () => import('../../src/components/Welcome.vue')},
-      {path:'/users',component: () => import('../../src/components/users/Users.vue')},
-      {path:'/roles',component: () => import('../../src/components/roles/Roles.vue')}
+      {path:'/welcome',component: () => import('components/Welcome.vue')},
+      {path:'/users',component: () => import('components/users/Users.vue')},
+      {path:'/rights',component: () => import('views/home/rightManage/RightList.vue')},
+      {path:'/roles',component: () => import('views/home/rightManage/Roles.vue')},
+      {path:'/categories',component: () => import('views/home/goodsManage/Categories.vue')},
+      {path:'/params',component: () => import('views/home/goodsManage/Params.vue')},
+      {path:'/goods',component: () => import('views/home/goodsManage/Goods.vue')},
+      {path:'/orders',component: () => import('views/home/orders/orders.vue')},
+      {path:'/reports',component: () => import('views/home/reports/reports.vue')},
+      {path:'/goods/add',component: () => import('views/home/goodsManage/GoodsAdd.vue')}
     ]
   }
 ]

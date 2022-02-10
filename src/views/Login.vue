@@ -4,33 +4,18 @@
       <div class="avatar">
         <img src="~assets/logo.png" alt="" />
       </div>
-      <el-form
-        ref="loginReset"
-        :rules="loginRules"
-        label-width="80px"
-        class="loginForm"
-        :model="loginForm"
-      ><!--
+      <el-form ref="loginReset" :rules="loginRules" label-width="80px" class="loginForm" :model="loginForm"
+        ><!--
         rules定义验证规则
         label-width文本框头部文字占用长度
         :model绑定数据，子元素v-model绑定详细数据
          -->
         <el-form-item label="用户名：" prop="username">
           <!--prop表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的-->
-          <el-input
-            clearable
-            v-model="loginForm.username"
-            placeholder="请输入用户名"
-            prefix-icon="el-icon-user"
-          ></el-input>
+          <el-input clearable v-model="loginForm.username" placeholder="请输入用户名" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <el-form-item label="密码：" prop="password">
-          <el-input
-            clearable
-            show-password
-            v-model="loginForm.password"
-            placeholder="请输入密码"
-          >
+          <el-input clearable show-password v-model="loginForm.password" placeholder="请输入密码">
             <i slot="prefix" class="el-input__icon el-icon-lock"></i>
             <!--前侧使用类添加图标-->
           </el-input>
@@ -45,37 +30,37 @@
 </template>
 
 <script>
-import { login } from "../network/login.js";
+import { login } from 'network/login.js'
 export default {
-  name: "Login",
+  name: 'Login',
   components: {},
   data() {
     return {
       loginForm: {
-        username: "",
-        password: "",
+        username: '',
+        password: '',
       },
       loginRules: {
         username: [
-          { required: true, message: "请输入用户名", trigger: "blur" },
-          { min: 3, max: 6, message: "长度在 3 到 6 个字符", trigger: "blur" },
+          { required: true, message: '请输入用户名', trigger: 'blur' },
+          { min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur' },
         ],
         password: [
-          { required: true, message: "请输入密码", trigger: "blur" },
+          { required: true, message: '请输入密码', trigger: 'blur' },
           {
             min: 6,
             max: 16,
-            message: "长度在 6 到 16 个字符",
-            trigger: "blur",
+            message: '长度在 6 到 16 个字符',
+            trigger: 'blur',
           },
         ],
       },
-    };
+    }
   },
   methods: {
     //重置文本框
     reset() {
-      this.$refs.loginReset.resetFields();
+      this.$refs.loginReset.resetFields()
       //resetFields重置对应节点文本框的数据
     },
 
@@ -83,24 +68,24 @@ export default {
     login() {
       this.$refs.loginReset.validate((valid) => {
         //valid判断输入的值是否符合rules规则，validate是rules校验的回调函数
-        if (!valid) return;
+        if (!valid) return
         login(this.loginForm).then((res) => {
           if (res.meta.status != 200) {
             this.$message({
-              message: "登录失败",
-              type: "error",
-            });
+              message: '登录失败',
+              type: 'error',
+            })
           } else {
-            this.$message.success("登录成功");
-            console.log(res);
-            sessionStorage.setItem("token", res.data.token);
-            this.$router.push("/home");
+            this.$message.success('登录成功')
+            console.log(res)
+            sessionStorage.setItem('token', res.data.token)
+            this.$router.push('/home')
           }
-        });
-      });
+        })
+      })
     },
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 .login {

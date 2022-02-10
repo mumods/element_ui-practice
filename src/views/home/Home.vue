@@ -2,14 +2,14 @@
   <el-container class="home">
     <el-header>
       <div class="name">
-        <img src="../../assets/logo.png" alt="">
+        <img src="../../assets/logo.png" alt="" />
         <span>电商后台管理系统</span>
       </div>
-      <el-button type='info' @click='exit' size="small">退出</el-button>
+      <el-button type="info" @click="exit" size="small">退出</el-button>
     </el-header>
     <el-container>
-      <el-aside :width="istoggle? '64px':'200px'">
-        <SideBar @toggleChange='toggle'/>
+      <el-aside :width="istoggle ? '64px' : '200px'">
+        <SideBar @toggleChange="toggle" />
       </el-aside>
       <el-main>
         <router-view></router-view>
@@ -21,52 +21,52 @@
 <script>
 import SideBar from 'components/sideBar/SideBar'
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
-    SideBar
+    SideBar,
   },
-  data(){
-    return{
-      istoggle:''
+  data() {
+    return {
+      istoggle: '',
     }
   },
-  methods:{
-    exit(){
+  methods: {
+    exit() {
       sessionStorage.removeItem('token')
       this.$router.push('/login')
     },
-    toggle(e){
+    toggle(e) {
       this.istoggle = e
-    }
-  }
-};
+    },
+  },
+}
 </script>
 <style lang="scss" scoped>
-  .home{
-    height: 100%;
-    .el-header{
-      background-color: #373d41;
+.home {
+  height: 100%;
+  .el-header {
+    background-color: #373d41;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .name {
+      color: #fff;
+      font-size: 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      .name{
-          color: #fff;
-          font-size: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        img{
-          width: 50px;
-          height: 50px;
-          margin-right: 10px;
-        }
+      justify-content: space-between;
+      img {
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
       }
     }
-    .el-aside{
-      background-color: #333744;
-    }
-    .el-main{
-      background-color: #eaedf1;
-    }
   }
+  .el-aside {
+    background-color: #333744;
+  }
+  .el-main {
+    background-color: #eaedf1;
+  }
+}
 </style>
