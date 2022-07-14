@@ -14,8 +14,8 @@ module.exports = {
                 'views': '@/views'
             }
         }
-    },
-
+    }
+}
     //从外部导入，打包时不占用空间
 //     chainWebpack: config=>{
 //         config.set('externals',{
@@ -28,4 +28,3 @@ module.exports = {
 //             'vue-quill-editor': 'VueQuillEditor'
 //         })
 //     }
-}

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { login } from 'network/login.js'
+import { login } from '../network/login.js'
 export default {
   name: 'Login',
   components: {},
@@ -70,6 +70,7 @@ export default {
         //valid判断输入的值是否符合rules规则，validate是rules校验的回调函数
         if (!valid) return
         login(this.loginForm).then((res) => {
+          // console.log(res)
           if (res.meta.status != 200) {
             this.$message({
               message: '登录失败',
